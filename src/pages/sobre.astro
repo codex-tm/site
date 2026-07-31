@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+const values = ['Verdade acima de conforto', 'Ação acima de discurso', 'Sistema acima de motivação', 'Autorresponsabilidade acima de desculpas'];
+---
+<Base title='Sobre — Ensinamentos da Vida' description='O Ensinamentos da Vida é um projeto de desenvolvimento pessoal direto, sem motivação barata.' path='/sobre'>
+<section class='mx-auto w-full max-w-4xl px-6 pb-20 pt-36 sm:px-8'>
+<p class='font-ui text-xs font-semibold uppercase tracking-[0.25em] text-accent'>Sobre</p>
+<h1 class='mt-3 max-w-3xl font-display text-4xl leading-tight text-titulo sm:text-6xl'>Nós não vendemos motivação. Nós construímos sistema.</h1>
+<p class='mt-6 text-lg leading-[1.8] text-texto/80'>O Ensinamentos da Vida nasceu de uma constatação simples: a maioria das pessoas não fracassa por falta de desejo. Fracassa por falta de sistema.</p>
+<p class='mt-4 text-lg leading-[1.8] text-texto/80'>Aqui você não encontra promessa mágica, coach genérico ou frase bonita que morre no dia seguinte. Você encontra direção, ação e responsabilidade.</p>
+</section>
+<section class='border-t border-white/5 py-20'>
+<div class='mx-auto w-full max-w-4xl px-6 sm:px-8'>
+<h2 class='font-display text-3xl text-titulo sm:text-4xl'>No que acreditamos</h2>
+<div class='mt-10 grid gap-5 sm:grid-cols-2'>
+{values.map((value) => (
+<div class='rounded-2xl border border-white/5 bg-white/[0.02] p-7 font-display text-xl text-titulo'>{value}</div>
+))}
+</div>
+</div>
+</section>
+<section class='border-t border-white/5 bg-superficie/30 py-20'>
+<div class='mx-auto w-full max-w-3xl px-6 sm:px-8'>
+<h2 class='font-display text-3xl text-titulo sm:text-4xl'>A voz do projeto</h2>
+<p class='mt-6 text-base leading-[1.85] text-texto/80'>Direta, confrontacional e sem pena. A gente fala com quem está cansado de se enganar. Se você procura consolo, este lugar não é para você. Se você procura postura, seja bem-vindo.</p>
+<blockquote class='mt-8 border-l-4 border-accent bg-accent/5 p-6 font-display text-2xl italic text-titulo'>O caminho da verdade é solitário. Mas é o único que te leva ao topo.</blockquote>
+</div>
+</section>
+<section class='border-t border-white/5 py-24 text-center'>
+<div class='mx-auto w-full max-w-2xl px-6 sm:px-8'>
+<p class='font-ui text-xs uppercase tracking-[0.25em] text-accent'>Assinatura</p>
+<p class='mt-4 font-display text-3xl text-titulo sm:text-4xl'>{site.signature}</p>
+<a href={site.telegram} target='_blank' rel='noopener noreferrer' class='mt-8 inline-block rounded-full bg-accent px-8 py-4 font-ui text-sm font-semibold text-fundo'>Iniciar o bot</a>
+</div>
+</section>
+</Base>

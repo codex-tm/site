@@ -1,0 +1,8 @@
+node_modules/
+_legacy_node_modules/
+dist/
+.astro/
+.env
+.env.*
+_legacy/
+.astro-cache/

@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../data/site';
+const pillars = [{ number: '01', title: 'Sistema > Motivação', description: 'Você não sobe ao nível dos seus objetivos. Você cai ao nível dos seus sistemas. Primeiro o sistema. Depois o resultado.' }, { number: '02', title: '1% todo dia', description: 'Esquece revolução. Consistência vence intensidade. Pequenos avanços repetidos constroem uma vida irreconhecível.' }, { number: '03', title: 'Autorresponsabilidade radical', description: 'Ninguém vem te salvar. Quando você aceita isso, o controle volta para as suas mãos e o jogo muda.' }];
+const steps = [{ number: '1', title: 'Consuma o conteúdo gratuito', description: 'Leia os artigos e receba 1 ideia prática por semana no Telegram.' }, { number: '2', title: 'Escolha um comportamento', description: 'Nada de mudar tudo. Escolha um comportamento pequeno e repetível.' }, { number: '3', title: 'Construa o sistema', description: 'Crie ambiente, rotina e regra de decisão. Não dependa de vontade.' }, { number: '4', title: 'Aprofunde no curso', description: 'Quando estiver pronto, entre no curso em áudio para acelerar a transformação.' }];
+---
+<Base title='Método — Ensinamentos da Vida' description='O método do Ensinamentos da Vida: sistema, consistência e autorresponsabilidade radical.' path='/metodo'>
+<section class='mx-auto w-full max-w-5xl px-6 pb-20 pt-36 sm:px-8'>
+<p class='font-ui text-xs font-semibold uppercase tracking-[0.25em] text-accent'>O método</p>
+<h1 class='mt-3 max-w-3xl font-display text-4xl leading-tight text-titulo sm:text-6xl'>Motivação não constrói vida. Sistema constrói.</h1>
+<p class='mt-6 max-w-2xl text-lg leading-[1.8] text-texto/80'>O Ensinamentos da Vida existe para transformar intenção em comportamento. Sem coach. Sem milagre. Sem promessa mágica.</p>
+<div class='mt-10 flex flex-wrap gap-4'>
+<a href={site.telegram} target='_blank' rel='noopener noreferrer' class='rounded-full bg-accent px-7 py-3.5 font-ui text-sm font-semibold text-fundo'>Iniciar o bot</a>
+<a href='/curso' class='rounded-full border border-white/10 px-7 py-3.5 font-ui text-sm font-semibold text-titulo hover:bg-white/5'>Conhecer o curso</a>
+</div>
+</section>
+<section class='border-t border-white/5 py-20'>
+<div class='mx-auto w-full max-w-5xl px-6 sm:px-8'>
+<h2 class='font-display text-3xl text-titulo sm:text-4xl'>Três pilares</h2>
+<div class='mt-10 grid gap-5 md:grid-cols-3'>
+{pillars.map((pillar) => (
+<div class='rounded-2xl border border-white/5 bg-white/[0.02] p-7'>
+<span class='font-display text-4xl text-accent/20'>{pillar.number}</span>
+<h3 class='mt-4 font-display text-xl text-titulo'>{pillar.title}</h3>
+<p class='mt-3 text-sm leading-relaxed text-texto/70'>{pillar.description}</p>
+</div>
+))}
+</div>
+</div>
+</section>
+<section class='border-t border-white/5 bg-superficie/30 py-20'>
+<div class='mx-auto w-full max-w-4xl px-6 sm:px-8'>
+<h2 class='font-display text-3xl text-titulo sm:text-4xl'>Como aplicar</h2>
+<div class='mt-10 space-y-4'>
+{steps.map((step) => (
+<div class='flex items-start gap-5 rounded-2xl border border-white/5 bg-white/[0.02] p-6'>
+<span class='flex h-10 w-10 flex-none items-center justify-center rounded-full border border-accent/20 font-display text-accent'>{step.number}</span>
+<div>
+<h3 class='font-display text-xl text-titulo'>{step.title}</h3>
+<p class='mt-2 text-sm leading-relaxed text-texto/70'>{step.description}</p>
+</div>
+</div>
+))}
+</div>
+</div>
+</section>
+<section class='border-t border-white/5 py-20 text-center'>
+<div class='mx-auto w-full max-w-3xl px-6 sm:px-8'>
+<blockquote class='font-display text-3xl italic leading-relaxed text-titulo sm:text-4xl'>A ação prova mais do que mil palavras.</blockquote>
+<p class='mt-6 font-ui text-xs uppercase tracking-[0.2em] text-texto/40'>Ensinamentos da Vida</p>
+</div>
+</section>
+<section class='border-t border-white/5 py-24'>
+<div class='mx-auto w-full max-w-2xl px-6 text-center sm:px-8'>
+<h2 class='font-display text-4xl text-titulo sm:text-5xl'>Comece pelo sistema.</h2>
+<p class='mt-5 text-base leading-[1.75] text-texto/70'>Receba 1 ideia prática por semana e aplique no mesmo dia.</p>
+<a href={site.telegram} target='_blank' rel='noopener noreferrer' class='mt-8 inline-block rounded-full bg-accent px-8 py-4 font-ui text-sm font-semibold text-fundo'>Iniciar o bot</a>
+</div>
+</section>
+</Base>

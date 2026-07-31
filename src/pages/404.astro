@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title='Página não encontrada — Ensinamentos da Vida' description='A página que você procura não existe ou foi movida.' path='/404' noindex={true}>
+<section class='mx-auto flex min-h-[70vh] w-full max-w-3xl flex-col items-center justify-center px-6 py-36 text-center sm:px-8'>
+<p class='font-ui text-xs font-semibold uppercase tracking-[0.25em] text-accent'>Erro 404</p>
+<h1 class='mt-4 font-display text-5xl text-titulo sm:text-6xl'>Essa página não existe.</h1>
+<p class='mt-4 max-w-xl text-base leading-relaxed text-texto/70'>O caminho que você tentou acessar foi movido ou nunca fez parte do site.</p>
+<div class='mt-8 flex flex-wrap justify-center gap-4'>
+<a href='/' class='rounded-full bg-accent px-7 py-3.5 font-ui text-sm font-semibold text-fundo'>Voltar para a home</a>
+<a href='/blog' class='rounded-full border border-white/10 px-7 py-3.5 font-ui text-sm font-semibold text-titulo hover:bg-white/5'>Ler artigos</a>
+</div>
+</section>
+</Base>
