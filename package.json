@@ -1,28 +1,35 @@
 {
-    "name": "ensinamentos-da-vida",
-    "type": "module",
-    "version": "1.0.0",
-    "private": true,
-    "scripts": {
-        "dev": "astro dev",
-        "build": "astro build",
-        "preview": "astro preview",
-        "astro": "astro"
-    },
-    "dependencies": {
-        "@astrojs/mdx": "^7.0.5",
-        "@astrojs/react": "^6.0.2",
-        "@astrojs/rss": "^4.0.19",
-        "@astrojs/sitemap": "^3.7.3",
-        "@tailwindcss/vite": "^4.1.17",
-        "astro": "^7.1.6",
-        "react": "^19.2.6",
-        "react-dom": "^19.2.6",
-        "tailwindcss": "^4.1.17"
-    },
-    "devDependencies": {
-        "@types/react": "^19.2.7",
-        "@types/react-dom": "^19.2.3",
-        "typescript": "^5.9.3"
-    }
+  "name": "blog",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --port 1000",
+    "dev:next": "next dev",
+    "build": "next build",
+    "build:cf": "opennextjs-cloudflare build",
+    "deploy": "opennextjs-cloudflare build && wrangler deploy",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "next": "16.2.12",
+    "next-mdx-remote": "^6.0.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4"
+  },
+  "devDependencies": {
+    "@opennextjs/cloudflare": "^1.20.2",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "esbuild": "^0.28.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.12",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "wrangler": "^4.118.0"
+  }
 }

@@ -1,63 +1,36 @@
-# Ensinamentos da Vida
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Site editorial estático feito com Astro, Tailwind CSS v4 e Markdown.
+## Getting Started
 
-## Comandos
+First, run the development server:
 
 ```bash
-npm run dev       # ambiente de desenvolvimento
-npm run build     # build estático para produção
-npm run preview   # preview do build
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-## Estrutura principal
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```text
-src/
-  components/     # Header, Footer, PostCard
-  content/posts/  # artigos em Markdown
-  data/           # site, categorias, curso, FAQ, trilhas
-  layouts/        # Base.astro
-  pages/          # rotas do site
-  styles/         # tema global
-public/           # robots.txt e favicon
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Rotas geradas
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-- `/`
-- `/blog`
-- `/blog/[categoria]`
-- `/blog/[slug]`
-- `/metodo`
-- `/curso`
-- `/bot`
-- `/comece-aqui`
-- `/sobre`
-- `/contato`
-- `/rss.xml`
-- `/sitemap-index.xml`
+## Learn More
 
-## Conteúdo
+To learn more about Next.js, take a look at the following resources:
 
-Os artigos ficam em `src/content/posts/*.md` com frontmatter:
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-```md
----
-title: 'Título do artigo'
-slug: 'slug-do-artigo'
-category: 'autenticidade'
-excerpt: 'Resumo do artigo.'
-date: 2026-07-31
-readTime: '6 min'
-featured: true
-status: publicado
-tags: ['autenticidade']
-related: ['outro-artigo']
----
-```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Backup do site antigo
+## Deploy on Vercel
 
-O projeto React/Vite anterior foi preservado em `_legacy/`.
-Os `node_modules` antigos foram renomeados para `_legacy_node_modules/` e podem ser deletados depois para liberar espaço.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

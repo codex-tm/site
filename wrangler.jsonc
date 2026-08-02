@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "blog",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "account_id": "1b2ada570145e5110802a5ff46ee1e29",
+  "build": {
+    "command": "npx opennextjs-cloudflare build"
+  },
+
+  "routes": [
+    {
+      "pattern": "ensinamentosdavida.com.br",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.ensinamentosdavida.com.br",
+      "custom_domain": true
+    }
+  ],
+
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  }
+}

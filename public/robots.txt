@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://ensinamentosdavida.com.br/sitemap-index.xml
