@@ -176,7 +176,7 @@ export function DarkCta({
   buttonLabel?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-ink text-paper">
+    <section className="relative overflow-hidden bg-band-dark text-band-text">
       {/* Padrão de fundo em grade de pontos sutis */}
       <div className="absolute inset-0 bg-grid-dark opacity-30 pointer-events-none" />
 
@@ -186,11 +186,11 @@ export function DarkCta({
           {kicker}
           <span className="h-px w-8 bg-action-bright/50" aria-hidden />
         </p>
-        <h2 className="mx-auto mt-8 max-w-3xl font-display text-4xl font-medium italic leading-[1.18] text-paper sm:text-5xl">
+        <h2 className="mx-auto mt-8 max-w-3xl font-display text-4xl font-medium italic leading-[1.18] text-band-text sm:text-5xl">
           {heading}
         </h2>
         {sub && (
-          <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.85] text-muted">
+          <p className="mx-auto mt-6 max-w-xl text-lg leading-[1.85] text-stone-400">
             {sub}
           </p>
         )}
@@ -199,12 +199,12 @@ export function DarkCta({
             href={site.telegram.url}
             external
             variant="inverted"
-            className="px-8 py-4 text-base shadow-glow hover:shadow-white/20"
+            className="px-8 py-4 text-base bg-[#fcfcfb] text-[#1c1917] hover:bg-white shadow-glow"
           >
             {buttonLabel ?? `Entrar no ${site.telegram.handle}`}
           </Button>
         </div>
-        <div className="mt-14 flex items-center justify-center gap-4 text-xs tracking-widest text-muted uppercase">
+        <div className="mt-14 flex items-center justify-center gap-4 text-xs tracking-widest text-stone-400 uppercase">
           <span className="h-px w-12 bg-white/10" />
           <span className="font-display italic">{site.signature}</span>
           <span className="h-px w-12 bg-white/10" />

@@ -96,7 +96,7 @@ export function Header() {
             href={site.telegram.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden rounded-full bg-ink px-5 py-2 text-xs font-semibold uppercase tracking-wider text-paper shadow-sm transition-all duration-300 hover:bg-ink-soft hover:shadow-editorial active:scale-95 sm:inline-flex"
+            className="hidden rounded-full bg-action px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white shadow-sm transition-all duration-300 hover:bg-action/90 hover:shadow-glow active:scale-95 sm:inline-flex"
           >
             Entrar no bot
           </a>
@@ -161,7 +161,7 @@ export function Header() {
               href={site.telegram.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex w-full items-center justify-center rounded-full bg-ink py-4 text-center text-sm font-semibold text-paper shadow-md transition-all active:scale-[0.98]"
+              className="flex w-full items-center justify-center rounded-full bg-action py-4 text-center text-sm font-semibold text-white shadow-md transition-all active:scale-[0.98]"
             >
               Entrar no bot no Telegram
             </a>

@@ -9,20 +9,20 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative overflow-hidden bg-ink text-paper border-t border-hairline-dark">
+    <footer className="relative overflow-hidden bg-band-dark text-band-text border-t border-hairline-dark">
       {/* Padrão sutil de grade no rodapé */}
       <div className="absolute inset-0 bg-grid-dark opacity-20 pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-5xl px-6 py-20">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 border-b border-hairline-dark pb-14">
-          <p className="max-w-2xl font-display text-3xl font-medium italic leading-snug text-paper sm:text-4xl">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 border-b border-white/10 pb-14">
+          <p className="max-w-2xl font-display text-3xl font-medium italic leading-snug text-band-text sm:text-4xl">
             {site.signature}
           </p>
 
           <button
             type="button"
             onClick={scrollToTop}
-            className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/20 text-paper/80 transition-all hover:border-white hover:bg-white/10 hover:text-white"
+            className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/20 text-white/80 transition-all hover:border-white hover:bg-white/10 hover:text-white"
             aria-label="Voltar ao topo"
           >
             <span className="text-lg transition-transform duration-300 group-hover:-translate-y-1">
@@ -35,7 +35,7 @@ export function Footer() {
           <div>
             <Link
               href="/"
-              className="font-display text-xl font-semibold tracking-tight text-paper hover:text-action-bright transition-colors"
+              className="font-display text-xl font-semibold tracking-tight text-band-text hover:text-action-bright transition-colors"
             >
               Ensinamentos<span className="text-action-bright">.</span>
             </Link>
