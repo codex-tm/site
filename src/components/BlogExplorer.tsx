@@ -4,8 +4,6 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import type { Post } from "@/lib/posts";
 import { formatDate } from "@/lib/formatters";
-import { Reveal } from "@/components/Reveal";
-
 
 export function BlogExplorer({ posts }: { posts: Post[] }) {
   const [search, setSearch] = useState("");
@@ -86,7 +84,7 @@ export function BlogExplorer({ posts }: { posts: Post[] }) {
         </div>
       </div>
 
-      {/* Lista de Artigos */}
+      {/* Lista de Artigos (Visíveis imediatamente) */}
       {filteredPosts.length === 0 ? (
         <div className="rounded-2xl border border-hairline bg-paper-dim p-12 text-center">
           <p className="text-lg font-medium text-ink">Nenhum artigo encontrado</p>
@@ -105,39 +103,38 @@ export function BlogExplorer({ posts }: { posts: Post[] }) {
           </button>
         </div>
       ) : (
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-6">
           {filteredPosts.map((post) => (
-            <Reveal key={post.slug}>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="group grid gap-4 border-b border-hairline py-10 transition-all duration-300 sm:grid-cols-[1fr_auto] sm:gap-10 hover:bg-paper-dim/40 px-4 sm:px-6 rounded-2xl"
-              >
-                <div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-semibold uppercase tracking-[0.22em] text-action">
-                      {post.category}
-                    </span>
-                    {post.featured && (
-                      <span className="rounded-full bg-action-soft px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-action">
-                        Destaque
-                      </span>
-                    )}
-                  </div>
-                  <h2 className="mt-3 font-display text-2xl font-semibold leading-snug text-ink transition-colors group-hover:text-action sm:text-3xl">
-                    {post.title}
-                  </h2>
-                  <p className="mt-4 max-w-2xl text-base leading-[1.85] text-graphite">
-                    {post.excerpt}
-                  </p>
-                </div>
-                <div className="flex flex-row sm:flex-col justify-between sm:items-end shrink-0 text-xs uppercase tracking-[0.15em] text-muted">
-                  <span>{formatDate(post.date)}</span>
-                  <span className="font-semibold text-action group-hover:underline">
-                    {post.readTime} · Ler artigo →
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="group grid gap-4 rounded-2xl border border-hairline bg-paper p-8 shadow-editorial transition-all duration-300 hover:-translate-y-1 hover:border-action/40 hover:shadow-lift sm:grid-cols-[1fr_auto] sm:gap-10"
+            >
+              <div>
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-semibold uppercase tracking-[0.22em] text-action">
+                    {post.category}
                   </span>
+                  {post.featured && (
+                    <span className="rounded-full bg-action-soft px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-action">
+                      Destaque
+                    </span>
+                  )}
                 </div>
-              </Link>
-            </Reveal>
+                <h2 className="mt-3 font-display text-2xl font-semibold leading-snug text-ink transition-colors group-hover:text-action sm:text-3xl">
+                  {post.title}
+                </h2>
+                <p className="mt-4 max-w-2xl text-base leading-[1.85] text-graphite">
+                  {post.excerpt}
+                </p>
+              </div>
+              <div className="flex flex-row sm:flex-col justify-between sm:items-end shrink-0 text-xs uppercase tracking-[0.15em] text-muted">
+                <span>{formatDate(post.date)}</span>
+                <span className="font-semibold text-action group-hover:underline">
+                  {post.readTime} · Ler artigo →
+                </span>
+              </div>
+            </Link>
           ))}
         </div>
       )}

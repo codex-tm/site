@@ -11,10 +11,10 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <ArtigosDestaque posts={posts} />
       <Problema />
       <Metodo />
       <TelegramSection />
-      <Prova posts={posts} />
       <Ecossistema />
       <DarkCta
         heading={
@@ -29,40 +29,22 @@ export default function Home() {
   );
 }
 
-/* 1 — HERO: a tese + faixa de prova de valor. "O que é isso?" */
-const propostas = [
-  {
-    titulo: "Sistema, não dopamina",
-    corpo: "Um método em 3 pilares pra sustentar a mudança — não um pico de ânimo passageiro.",
-    badge: "Arquitetura",
-  },
-  {
-    titulo: "1 ideia por semana",
-    corpo: "Direto no teu Telegram. Sem ruído, sem enchimento de linguiça, pronto pra agir.",
-    badge: "Frequência",
-  },
-  {
-    titulo: "Zero motivação vazia",
-    corpo: "Só raciocínio, causa e efeito. O óbvio executado de verdade no dia a dia.",
-    badge: "Foco",
-  },
-];
-
+/* 1 — HERO PRINCIPAL */
 function Hero() {
   return (
     <section className="relative overflow-hidden border-b border-hairline bg-paper">
       {/* Padrão sutil de grade no fundo */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-40 pointer-events-none" />
+      <div className="absolute inset-0 bg-grid-pattern pointer-events-none" />
 
       <Container className="relative z-10 pt-10 sm:pt-14">
         {/* Fólio editorial — meta superior */}
         <div className="hero-rise flex items-center justify-between border-b border-hairline pb-4 text-xs font-semibold uppercase tracking-[0.22em] text-muted">
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-action animate-pulse-dot"></span>
-            <span>Edição Editorial</span>
+            <span>Editorial Oficial</span>
           </div>
-          <span className="hidden sm:inline">Nº 01 — {site.domain}</span>
-          <span className="sm:hidden">Nº 01</span>
+          <span className="hidden sm:inline">{site.domain}</span>
+          <span>Nº 01</span>
         </div>
 
         <div className="py-20 sm:py-28">
@@ -91,50 +73,121 @@ function Hero() {
             className="hero-rise mt-10 flex flex-col gap-4 sm:flex-row sm:items-center"
             style={{ animationDelay: "280ms" }}
           >
-            <Button href={site.telegram.url} external className="shadow-glow">
-              Começar pelo bot no Telegram
+            <Button href="/blog" className="shadow-glow">
+              Explorar Artigos do Blog
             </Button>
-            <Button href="/metodo" variant="outline">
-              Conhecer o método
+            <Button href={site.telegram.url} external variant="outline">
+              Entrar no Bot Telegram
             </Button>
           </div>
         </div>
       </Container>
-
-      {/* Faixa de propostas de valor com cards elegantes */}
-      <div
-        className="hero-rise border-t border-hairline bg-paper-dim/80 backdrop-blur-sm"
-        style={{ animationDelay: "360ms" }}
-      >
-        <Container className="grid gap-6 py-8 sm:grid-cols-3 sm:gap-0 sm:py-0">
-          {propostas.map((p, i) => (
-            <div
-              key={p.titulo}
-              className={`py-6 sm:py-10 ${
-                i > 0 ? "sm:border-l sm:border-hairline sm:pl-8" : ""
-              } ${i < propostas.length - 1 ? "sm:pr-8" : ""}`}
-            >
-              <div className="flex items-center justify-between">
-                <p className="font-display text-lg font-semibold text-ink">
-                  {p.titulo}
-                </p>
-                <Badge variant="action">{p.badge}</Badge>
-              </div>
-              <p className="mt-3 text-sm leading-relaxed text-graphite">
-                {p.corpo}
-              </p>
-            </div>
-          ))}
-        </Container>
-      </div>
     </section>
   );
 }
 
-/* 2 — O PROBLEMA: nomeia o inimigo. "Por que nada funcionou?" */
+/* 2 — ARTIGOS EM DESTAQUE NA HOME (PROMINENTES LOGO APÓS O HERO) */
+function ArtigosDestaque({ posts }: { posts: ReturnType<typeof getPosts> }) {
+  if (posts.length === 0) return null;
+
+  const featuredPost = posts.find((p) => p.featured) || posts[0];
+  const otherPosts = posts.filter((p) => p.slug !== featuredPost.slug);
+
+  return (
+    <section className="border-b border-hairline bg-paper-dim/50 py-24 sm:py-32">
+      <Container>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+          <Reveal>
+            <Eyebrow>Blog em Destaque</Eyebrow>
+            <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
+              Leituras Fundacionais
+            </h2>
+          </Reveal>
+          <Reveal delay={80}>
+            <Link
+              href="/blog"
+              className="text-sm font-semibold text-action hover:underline flex items-center gap-1.5"
+            >
+              <span>Ver todos os artigos</span>
+              <span>→</span>
+            </Link>
+          </Reveal>
+        </div>
+
+        {/* Grade de Destaques */}
+        <div className="mt-14 grid gap-8 lg:grid-cols-12">
+          {/* Post Principal em Destaque (Ocupa 7 colunas) */}
+          <Reveal className="lg:col-span-7 h-full">
+            <Link
+              href={`/blog/${featuredPost.slug}`}
+              className="group flex h-full flex-col justify-between rounded-3xl border border-hairline bg-paper p-8 sm:p-12 shadow-editorial transition-all duration-300 hover:-translate-y-1 hover:border-action/40 hover:shadow-lift"
+            >
+              <div>
+                <div className="flex items-center gap-3">
+                  <Badge variant="action">{featuredPost.category}</Badge>
+                  <span className="rounded-full bg-action/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-action">
+                    Artigo Principal
+                  </span>
+                </div>
+
+                <h3 className="mt-6 font-display text-3xl font-semibold leading-snug text-ink transition-colors group-hover:text-action sm:text-4xl">
+                  {featuredPost.title}
+                </h3>
+
+                <p className="mt-6 text-lg leading-[1.85] text-graphite">
+                  {featuredPost.excerpt}
+                </p>
+              </div>
+
+              <div className="mt-10 flex items-center justify-between pt-6 border-t border-hairline text-xs uppercase tracking-wider text-muted">
+                <span>{formatDate(featuredPost.date)}</span>
+                <span className="font-semibold text-action group-hover:underline">
+                  {featuredPost.readTime} de leitura · Ler Artigo Completo →
+                </span>
+              </div>
+            </Link>
+          </Reveal>
+
+          {/* Posts Secundários (Ocupa 5 colunas) */}
+          <div className="lg:col-span-5 flex flex-col gap-8">
+            {otherPosts.map((post, idx) => (
+              <Reveal key={post.slug} delay={(idx + 1) * 90} className="h-full">
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="group flex h-full flex-col justify-between rounded-3xl border border-hairline bg-paper p-8 shadow-editorial transition-all duration-300 hover:-translate-y-1 hover:border-action/40 hover:shadow-lift"
+                >
+                  <div>
+                    <Badge variant="action">{post.category}</Badge>
+
+                    <h4 className="mt-4 font-display text-2xl font-semibold leading-snug text-ink transition-colors group-hover:text-action">
+                      {post.title}
+                    </h4>
+
+                    <p className="mt-3 text-sm leading-relaxed text-graphite line-clamp-3">
+                      {post.excerpt}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 flex items-center justify-between pt-4 border-t border-hairline text-xs uppercase tracking-wider text-muted">
+                    <span>{formatDate(post.date)}</span>
+                    <span className="font-semibold text-action group-hover:underline">
+                      {post.readTime} · Ler →
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+/* 3 — O PROBLEMA */
 function Problema() {
   return (
-    <section className="border-b border-hairline bg-paper-dim/60 py-24 sm:py-32">
+    <section className="border-b border-hairline py-24 sm:py-32">
       <Container>
         <Reveal>
           <Eyebrow>O problema</Eyebrow>
@@ -182,7 +235,7 @@ function Problema() {
   );
 }
 
-/* 3 — O MÉTODO: 3 pilares */
+/* 4 — O MÉTODO: 3 pilares */
 const pilares = [
   {
     num: "01",
@@ -206,7 +259,7 @@ const pilares = [
 
 function Metodo() {
   return (
-    <section className="border-b border-hairline py-24 sm:py-32">
+    <section className="border-b border-hairline bg-paper-dim/50 py-24 sm:py-32">
       <Container>
         <Reveal>
           <Eyebrow>O método</Eyebrow>
@@ -252,10 +305,10 @@ function Metodo() {
   );
 }
 
-/* 3.5 — SEÇÃO TELEGRAM INTERATIVA */
+/* 5 — SEÇÃO TELEGRAM INTERATIVA */
 function TelegramSection() {
   return (
-    <section className="border-b border-hairline bg-paper-dim/40 py-24 sm:py-32">
+    <section className="border-b border-hairline py-24 sm:py-32">
       <Container>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <Reveal>
@@ -300,66 +353,7 @@ function TelegramSection() {
   );
 }
 
-/* 4 — PROVA: posts com ação concreta */
-function Prova({ posts }: { posts: ReturnType<typeof getPosts> }) {
-  return (
-    <section className="border-b border-hairline py-24 sm:py-32">
-      <Container>
-        <div className="flex items-end justify-between gap-6">
-          <Reveal>
-            <Eyebrow>Artigos em Destaque</Eyebrow>
-            <h2 className="mt-6 font-display text-4xl font-medium tracking-tight text-ink sm:text-5xl">
-              Leia antes de acreditar.
-            </h2>
-          </Reveal>
-          <Link
-            href="/blog"
-            className="hidden shrink-0 text-sm font-semibold text-action hover:underline sm:block"
-          >
-            Ver todos os artigos →
-          </Link>
-        </div>
-
-        {posts.length === 0 ? (
-          <p className="mt-16 text-graphite">
-            Os artigos de base estão sendo escritos. Volta em breve.
-          </p>
-        ) : (
-          <div className="mt-16 grid gap-8 sm:grid-cols-2">
-            {posts.slice(0, 2).map((post, i) => (
-              <Reveal key={post.slug} delay={i * 90} className="h-full">
-                <Link
-                  href={`/blog/${post.slug}`}
-                  className="group flex h-full flex-col justify-between rounded-2xl border border-hairline bg-paper p-9 shadow-editorial transition-all duration-300 hover:-translate-y-1 hover:border-action/30 hover:shadow-lift"
-                >
-                  <div>
-                    <span className="text-xs font-semibold uppercase tracking-[0.22em] text-action">
-                      {post.category}
-                    </span>
-                    <h3 className="mt-4 font-display text-2xl font-semibold leading-snug text-ink transition-colors group-hover:text-action">
-                      {post.title}
-                    </h3>
-                    <p className="mt-4 leading-[1.85] text-graphite line-clamp-3">
-                      {post.excerpt}
-                    </p>
-                  </div>
-                  <div className="mt-8 flex items-center justify-between pt-4 border-t border-hairline/60 text-xs text-muted uppercase tracking-wider">
-                    <span>{formatDate(post.date)}</span>
-                    <span className="font-semibold text-action group-hover:underline">
-                      {post.readTime} · Ler →
-                    </span>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        )}
-      </Container>
-    </section>
-  );
-}
-
-/* 5 — ECOSSISTEMA */
+/* 6 — ECOSSISTEMA */
 const canais = [
   {
     tag: "Fundação",
@@ -384,7 +378,7 @@ const canais = [
 
 function Ecossistema() {
   return (
-    <section className="border-b border-hairline bg-paper-dim/40 py-24 sm:py-32">
+    <section className="border-b border-hairline bg-paper-dim/50 py-24 sm:py-32">
       <Container>
         <Reveal>
           <Eyebrow>Ecossistema</Eyebrow>
