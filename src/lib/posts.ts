@@ -1,6 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import { formatDate } from "@/lib/formatters";
+
+export { formatDate };
+
 
 /**
  * Camada de conteúdo do blog.
@@ -59,12 +63,3 @@ export function getPost(slug: string): Post | undefined {
   return getPosts().find((p) => p.slug === slug);
 }
 
-export function formatDate(iso: string): string {
-  if (!iso) return "";
-  const [y, m, d] = iso.split("-").map(Number);
-  return new Date(y, (m ?? 1) - 1, d ?? 1).toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric",
-  });
-}

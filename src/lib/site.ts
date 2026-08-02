@@ -1,7 +1,7 @@
 /**
  * Config central da marca.
  * Fonte de verdade: vault ensinamentosdavida → 01-PROJETO/Visão Geral.
- * Fase atual: TRAÇÃO — zero venda. CTA principal é o bot do Telegram.
+ * Fase atual: TRAÇÃO — zero venda. CTA principal é o bot do Telegram (nossa newsletter).
  */
 export const site = {
   name: "Ensinamentos da Vida",
@@ -17,7 +17,6 @@ export const site = {
   nav: [
     { label: "Blog", href: "/blog" },
     { label: "Método", href: "/metodo" },
-    { label: "Curso", href: "/curso-audio" },
     { label: "Manifesto", href: "/manifesto" },
   ],
 } as const;

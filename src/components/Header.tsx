@@ -1,38 +1,176 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { site } from "@/lib/site";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Fechar menu ao mudar de rota
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Travar scroll do body quando menu mobile está aberto
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileMenuOpen]);
+
   return (
-    <header className="sticky top-0 z-40 border-b border-hairline bg-paper/85 backdrop-blur">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-4">
+    <header className="sticky top-0 z-50 border-b border-hairline bg-paper/85 backdrop-blur-xl transition-all duration-300">
+      {/* Masthead — barra de utilidade editorial */}
+      <div className="border-b border-hairline/70 bg-paper-dim/40">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">
+          <div className="flex items-center gap-2">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-pulse-dot absolute inline-flex h-full w-full rounded-full bg-action opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-action"></span>
+            </span>
+            <span>{site.domain}</span>
+          </div>
+          <a
+            href={site.telegram.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-1.5 transition-colors hover:text-ink"
+          >
+            <span>{site.telegram.handle}</span>
+            <span className="text-action transition-transform duration-200 group-hover:translate-x-0.5">
+              →
+            </span>
+          </a>
+        </div>
+      </div>
+
+      {/* Barra principal */}
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-3.5">
         <Link
           href="/"
-          className="font-display text-lg font-semibold tracking-tight text-ink"
+          className="group flex items-center gap-1 font-display text-xl font-semibold tracking-tight text-ink"
         >
-          Ensinamentos<span className="text-action">.</span>
+          <span>Ensinamentos</span>
+          <span className="text-action transition-transform duration-300 group-hover:scale-125">
+            .
+          </span>
         </Link>
 
-        <nav className="hidden items-center gap-7 text-sm font-medium text-graphite md:flex">
-          {site.nav.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="transition-colors hover:text-ink"
-            >
-              {item.label}
-            </Link>
-          ))}
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center gap-8 text-sm font-medium text-graphite md:flex">
+          {site.nav.map((item) => {
+            const href = item.href as string;
+            const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`relative py-1.5 text-sm transition-colors duration-200 ${
+                  isActive ? "font-semibold text-ink" : "hover:text-ink"
+                }`}
+              >
+                {item.label}
+                {isActive ? (
+                  <span className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-action" />
+                ) : (
+                  <span className="absolute bottom-0 left-0 h-0.5 w-0 rounded-full bg-action transition-all duration-300 group-hover:w-full" />
+                )}
+              </Link>
+            );
+          })}
         </nav>
 
-        <a
-          href={site.telegram.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-full bg-action px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-action/90"
-        >
-          Entrar no bot
-        </a>
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+
+          <a
+            href={site.telegram.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden rounded-full bg-ink px-5 py-2 text-xs font-semibold uppercase tracking-wider text-paper shadow-sm transition-all duration-300 hover:bg-ink-soft hover:shadow-editorial active:scale-95 sm:inline-flex"
+          >
+            Entrar no bot
+          </a>
+
+          {/* Botão de Menu Mobile Toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-hairline text-ink transition-colors hover:bg-paper-dim md:hidden"
+            aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
+            aria-expanded={mobileMenuOpen}
+          >
+            {mobileMenuOpen ? (
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={2}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
+          </button>
+        </div>
       </div>
+
+      {/* Menu Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-x-0 top-[89px] bottom-0 z-50 flex flex-col bg-paper/98 px-6 py-8 backdrop-blur-2xl md:hidden">
+          <nav className="flex flex-col gap-6 text-lg font-medium text-ink">
+            {site.nav.map((item) => {
+              const href = item.href as string;
+              const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`flex items-center justify-between border-b border-hairline pb-4 transition-colors ${
+                    isActive ? "font-semibold text-action" : "text-ink hover:text-action"
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  <span className="text-sm font-normal text-muted">→</span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="mt-auto space-y-4 pt-6">
+            <a
+              href={site.telegram.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center rounded-full bg-ink py-4 text-center text-sm font-semibold text-paper shadow-md transition-all active:scale-[0.98]"
+            >
+              Entrar no bot no Telegram
+            </a>
+            <p className="text-center font-display text-xs italic text-muted">
+              {site.signature}
+            </p>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { Libre_Bodoni, Public_Sans } from "next/font/google";
+import { Newsreader, Plus_Jakarta_Sans } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/lib/site";
 import "./globals.css";
 
-const libre = Libre_Bodoni({
-  variable: "--font-libre",
+const displayFont = Newsreader({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const publicSans = Public_Sans({
-  variable: "--font-public",
+const sansFont = Plus_Jakarta_Sans({
+  variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
@@ -42,8 +42,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${libre.variable} ${publicSans.variable}`}>
-      <body className="flex min-h-screen flex-col bg-paper font-sans text-graphite antialiased">
+    <html
+      lang="pt-BR"
+      suppressHydrationWarning
+      className={`${displayFont.variable} ${sansFont.variable}`}
+    >
+      <body className="flex min-h-screen flex-col bg-paper font-sans text-graphite antialiased transition-colors duration-300">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){document.documentElement.classList.add('js');var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}})();`,
+          }}
+        />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
