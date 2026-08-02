@@ -19,15 +19,16 @@ export type Post = {
   content: string;
 };
 
-/** Correção de mojibake (caracteres acentuados corrompidos em UTF-8/Latin1) */
+/** Correção precisa de mojibake (apenas se houver sequências de dupla codificação como Ã¡, Ã§) */
 function fixMojibake(str: string): string {
   if (!str) return "";
-  try {
-    if (/[ÃÂâ]/.test(str)) {
+  // Apenas se contiver a sequência específica de mojibake UTF-8 (ex: Ã seguido de caractere latin1)
+  if (/Ã[¡-ÿ]/.test(str)) {
+    try {
       return Buffer.from(str, "latin1").toString("utf-8");
+    } catch {
+      // fallback
     }
-  } catch {
-    // fallback
   }
   return str;
 }
@@ -50,8 +51,7 @@ function scanDirectory(dir: string, categoryDefault?: string): Array<{ filePath:
   for (const item of items) {
     const fullPath = path.join(dir, item.name);
 
-    // Ignorar pastas ocultas ou node_modules / .next
-    if (item.name.startsWith(".") || item.name === "node_modules" || item.name === "public") {
+    if (item.name.startsWith(".") || item.name === "node_modules" || item.name === "public" || item.name === ".next") {
       continue;
     }
 
@@ -96,7 +96,6 @@ export function getPosts(): Post[] {
       const rawSlug = (data.slug as string) || fileName.replace(/\.(mdx|md|txt)$/i, "");
       const slug = rawSlug.trim();
 
-      // Evitar duplicatas pelo slug
       if (seenSlugs.has(slug)) continue;
       seenSlugs.add(slug);
 
