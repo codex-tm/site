@@ -6,6 +6,8 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { Container, DarkCta, Badge } from "@/components/ui";
 import { ReadingProgress } from "@/components/ReadingProgress";
 import { getPosts, getPost, formatDate } from "@/lib/posts";
+import { site } from "@/lib/site";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/lib/structured-data";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -17,10 +19,34 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
+
+  const url = `${site.url}/blog/${post.slug}`;
+  const ogTitle = `${post.title} · ${site.name}`;
+
   return {
     title: post.title,
     description: post.excerpt,
-    openGraph: { type: "article", title: post.title, description: post.excerpt },
+    keywords: post.tags,
+    authors: [{ name: site.name, url: site.url }],
+    openGraph: {
+      type: "article",
+      title: ogTitle,
+      description: post.excerpt,
+      url,
+      publishedTime: post.date,
+      authors: [site.name],
+      tags: post.tags,
+      images: [{ url: `${site.url}/og-image.png`, width: 1200, height: 630, alt: post.title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: ogTitle,
+      description: post.excerpt,
+      images: [`${site.url}/og-image.png`],
+    },
+    alternates: {
+      canonical: url,
+    },
   };
 }
 
@@ -76,6 +102,14 @@ export default async function PostPage({ params }: Params) {
 
   return (
     <>
+      <ArticleJsonLd post={post} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/blog" },
+          { name: post.title, url: `/blog/${post.slug}` },
+        ]}
+      />
       <article className="py-20 sm:py-28">
         <Container className="max-w-3xl">
           <Link

@@ -3,6 +3,7 @@ import { Newsreader, Plus_Jakarta_Sans } from "next/font/google";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { site } from "@/lib/site";
+import { OrganizationJsonLd } from "@/lib/structured-data";
 import "./globals.css";
 
 const displayFont = Newsreader({
@@ -27,12 +28,35 @@ export const metadata: Metadata = {
     template: `%s · ${site.name}`,
   },
   description: site.description,
+  keywords: [
+    "desenvolvimento pessoal",
+    "autodisciplina",
+    "autoajuda racional",
+    "sistema de hábitos",
+    "autorresponsabilidade",
+    "estoicismo prático",
+    "motivação vs disciplina",
+  ],
   openGraph: {
     type: "website",
     locale: "pt_BR",
     siteName: site.name,
     title: site.name,
     description: site.description,
+    url: site.url,
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: site.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.name,
+    description: site.description,
+    images: ["/og-image.png"],
+  },
+  alternates: {
+    canonical: site.url,
+    types: {
+      "application/rss+xml": "/rss.xml",
+    },
   },
 };
 
@@ -53,6 +77,7 @@ export default function RootLayout({
             __html: `(function(){document.documentElement.classList.add('js');var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark')}})();`,
           }}
         />
+        <OrganizationJsonLd />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

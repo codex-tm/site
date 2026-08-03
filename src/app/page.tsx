@@ -4,12 +4,14 @@ import { Reveal } from "@/components/Reveal";
 import { TelegramPreviewWidget } from "@/components/TelegramPreviewWidget";
 import { getPosts, formatDate } from "@/lib/posts";
 import { site } from "@/lib/site";
+import { WebSiteJsonLd } from "@/lib/structured-data";
 
 export default function Home() {
   const posts = getPosts();
 
   return (
     <>
+      <WebSiteJsonLd />
       <Hero />
       <ArtigosDestaque posts={posts} />
       <Problema />

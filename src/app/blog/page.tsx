@@ -2,11 +2,32 @@ import type { Metadata } from "next";
 import { Container, Eyebrow } from "@/components/ui";
 import { BlogExplorer } from "@/components/BlogExplorer";
 import { getPosts } from "@/lib/posts";
+import { site } from "@/lib/site";
+import { BreadcrumbJsonLd } from "@/lib/structured-data";
+
+const blogTitle = "Blog Editorial";
+const blogDesc =
+  "Conteúdo profundo com raciocínio lógico. A causa do problema, não listicle banal.";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Conteúdo profundo com raciocínio lógico. A causa do problema, não listicle banal.",
+  title: blogTitle,
+  description: blogDesc,
+  openGraph: {
+    type: "website",
+    title: `${blogTitle} · ${site.name}`,
+    description: blogDesc,
+    url: `${site.url}/blog`,
+    images: [{ url: `${site.url}/og-image.png`, width: 1200, height: 630, alt: blogTitle }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${blogTitle} · ${site.name}`,
+    description: blogDesc,
+    images: [`${site.url}/og-image.png`],
+  },
+  alternates: {
+    canonical: `${site.url}/blog`,
+  },
 };
 
 export default function BlogPage() {
@@ -14,6 +35,12 @@ export default function BlogPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Home", url: "/" },
+          { name: "Blog", url: "/blog" },
+        ]}
+      />
       <section className="relative overflow-hidden border-b border-hairline bg-paper">
         <div className="absolute inset-0 bg-grid-pattern opacity-30 pointer-events-none" />
         <Container className="relative z-10 py-24 sm:py-32">
