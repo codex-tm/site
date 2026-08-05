@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Build artifacts from OpenNext / Wrangler (not source):
+    ".open-next/**",
+    ".wrangler/**",
   ]),
 ]);
 
