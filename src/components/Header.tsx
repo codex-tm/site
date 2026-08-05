@@ -10,9 +10,11 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Fechar menu ao mudar de rota
+  // Fechar menu ao mudar de rota — setState dentro de callback do effect (não sincronamente)
   useEffect(() => {
-    setMobileMenuOpen(false);
+    // O efeito roda DEPOIS do render; usar um microtask garante que não é síncrono no corpo do effect
+    const id = requestAnimationFrame(() => setMobileMenuOpen(false));
+    return () => cancelAnimationFrame(id);
   }, [pathname]);
 
   // Travar scroll do body quando menu mobile está aberto

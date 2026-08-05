@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { site } from "@/lib/site";
 
 export function TelegramPreviewWidget() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(25);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);

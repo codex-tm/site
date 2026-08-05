@@ -1,35 +1,32 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore, useCallback } from "react";
+
+const THEME_KEY = "theme";
+
+function getThemeSnapshot() {
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
+}
+
+// SSR-safe: no DOM access on server
+const getServerSnapshot = () => "light" as const;
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [mounted, setMounted] = useState(false);
+  const theme = useSyncExternalStore(
+    (cb) => {
+      const mo = new MutationObserver(cb);
+      mo.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+      return () => mo.disconnect();
+    },
+    getThemeSnapshot,
+    getServerSnapshot
+  );
 
-  useEffect(() => {
-    setMounted(true);
-    const isDark = document.documentElement.classList.contains("dark");
-    setTheme(isDark ? "dark" : "light");
-  }, []);
-
-  const toggleTheme = () => {
-    const nextTheme = theme === "light" ? "dark" : "light";
-    setTheme(nextTheme);
-
-    if (nextTheme === "dark") {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  };
-
-  if (!mounted) {
-    return (
-      <div className="h-9 w-9 rounded-full border border-hairline bg-paper-dim" />
-    );
-  }
+  const toggleTheme = useCallback(() => {
+    const next = theme === "light" ? "dark" : "light";
+    document.documentElement.classList.toggle("dark", next === "dark");
+    localStorage.setItem(THEME_KEY, next);
+  }, [theme]);
 
   return (
     <button
@@ -40,7 +37,6 @@ export function ThemeToggle() {
       title={theme === "dark" ? "Modo Claro" : "Modo Escuro"}
     >
       {theme === "dark" ? (
-        // Ícone Sol (Modo Claro)
         <svg
           className="h-4 w-4 text-amber-400 transition-transform duration-300 rotate-0 hover:rotate-45"
           fill="none"
@@ -55,7 +51,6 @@ export function ThemeToggle() {
           />
         </svg>
       ) : (
-        // Ícone Lua (Modo Escuro)
         <svg
           className="h-4 w-4 text-slate-700 transition-transform duration-300 hover:-rotate-12"
           fill="none"
