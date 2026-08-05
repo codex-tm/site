@@ -56,3 +56,17 @@ export function getPosts(): Post[] {
 export function getPost(slug: string): Post | undefined {
   return getPosts().find((p) => p.slug === slug);
 }
+
+/**
+ * Retorna posts da mesma categoria, excluindo o post atual.
+ * Usado como fallback quando `related` do frontmatter está vazio.
+ */
+export function getRelatedByCategory(
+  currentSlug: string,
+  category: string,
+  limit = 2
+): Post[] {
+  return getPosts()
+    .filter((p) => p.slug !== currentSlug && p.category === category)
+    .slice(0, limit);
+}

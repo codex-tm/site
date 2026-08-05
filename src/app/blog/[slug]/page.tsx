@@ -5,7 +5,9 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { Container, DarkCta, Badge } from "@/components/ui";
 import { ReadingProgress } from "@/components/ReadingProgress";
-import { getPosts, getPost, formatDate } from "@/lib/posts";
+import { ShareButtons } from "@/components/ShareButtons";
+import { InlineBotCta } from "@/components/InlineBotCta";
+import { getPosts, getPost, getRelatedByCategory, formatDate } from "@/lib/posts";
 import { site } from "@/lib/site";
 import { ArticleJsonLd, BreadcrumbJsonLd } from "@/lib/structured-data";
 
@@ -36,13 +38,11 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       publishedTime: post.date,
       authors: [site.name],
       tags: post.tags,
-      images: [{ url: `${site.url}/og-image.png`, width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle,
       description: post.excerpt,
-      images: [`${site.url}/og-image.png`],
     },
     alternates: {
       canonical: url,
@@ -100,6 +100,12 @@ export default async function PostPage({ params }: Params) {
     .map((r) => getPost(r))
     .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
+  // Fallback: se não há related no frontmatter, pega por categoria
+  const displayRelated =
+    relacionados.length > 0
+      ? relacionados
+      : getRelatedByCategory(post.slug, post.category);
+
   return (
     <>
       <ArticleJsonLd post={post} />
@@ -146,17 +152,28 @@ export default async function PostPage({ params }: Params) {
           <div className="article-content mt-10 border-t border-hairline pt-6">
             <MDXRemote source={post.content} components={mdx} />
           </div>
+
+          {/* Share buttons — logo após o conteúdo */}
+          <div className="mt-12 border-t border-hairline pt-8">
+            <ShareButtons
+              url={`${site.url}/blog/${post.slug}`}
+              title={post.title}
+            />
+          </div>
+
+          {/* CTA inline do bot — entre o artigo e os relacionados */}
+          <InlineBotCta />
         </Container>
       </article>
 
-      {relacionados.length > 0 && (
+      {displayRelated.length > 0 && (
         <section className="border-t border-hairline bg-paper-dim/60">
           <Container className="py-20 sm:py-24">
             <h2 className="font-display text-3xl font-semibold tracking-tight text-ink">
               Artigos Relacionados
             </h2>
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
-              {relacionados.map((r) => (
+              {displayRelated.map((r) => (
                 <Link
                   key={r.slug}
                   href={`/blog/${r.slug}`}
