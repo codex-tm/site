@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useLayoutEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/lib/site";
@@ -8,6 +8,8 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [drawerTop, setDrawerTop] = useState(0);
+  const headerRef = useRef<HTMLElement | null>(null);
   const pathname = usePathname();
 
   // Fechar menu ao mudar de rota — setState dentro de callback do effect (não sincronamente)
@@ -29,25 +31,41 @@ export function Header() {
     };
   }, [mobileMenuOpen]);
 
+  // Medir a altura real do header pra posicionar o drawer logo abaixo dele.
+  // Header tem altura variável (masthead pode quebrar linha), então nada de offset hardcoded.
+  useLayoutEffect(() => {
+    if (!mobileMenuOpen) return;
+    const update = () => {
+      if (headerRef.current) setDrawerTop(headerRef.current.offsetHeight);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [mobileMenuOpen]);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-hairline bg-paper/85 backdrop-blur-xl transition-all duration-300">
+    <>
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 border-b border-hairline bg-paper/85 backdrop-blur-xl transition-all duration-300"
+    >
       {/* Masthead — barra de utilidade editorial */}
       <div className="border-b border-hairline/70 bg-paper-dim/40">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">
-          <div className="flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
+        <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-6 py-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-muted">
+          <div className="flex min-w-0 items-center gap-2">
+            <span className="relative flex h-2 w-2 shrink-0">
               <span className="animate-pulse-dot absolute inline-flex h-full w-full rounded-full bg-action opacity-75"></span>
               <span className="relative inline-flex h-2 w-2 rounded-full bg-action"></span>
             </span>
-            <span>{site.domain}</span>
+            <span className="hidden truncate sm:inline">{site.domain}</span>
           </div>
           <a
             href={site.telegram.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-1.5 transition-colors hover:text-ink"
+            className="group flex min-w-0 items-center gap-1.5 transition-colors hover:text-ink"
           >
-            <span>{site.telegram.handle}</span>
+            <span className="truncate">{site.telegram.handle}</span>
             <span className="text-action transition-transform duration-200 group-hover:translate-x-0.5">
               →
             </span>
@@ -135,44 +153,50 @@ export function Header() {
           </button>
         </div>
       </div>
-
-      {/* Menu Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-x-0 top-[89px] bottom-0 z-50 flex flex-col bg-paper/98 px-6 py-8 backdrop-blur-2xl md:hidden">
-          <nav className="flex flex-col gap-6 text-lg font-medium text-ink">
-            {site.nav.map((item) => {
-              const href = item.href as string;
-              const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`flex items-center justify-between border-b border-hairline pb-4 transition-colors ${
-                    isActive ? "font-semibold text-action" : "text-ink hover:text-action"
-                  }`}
-                >
-                  <span>{item.label}</span>
-                  <span className="text-sm font-normal text-muted">→</span>
-                </Link>
-              );
-            })}
-          </nav>
-
-          <div className="mt-auto space-y-4 pt-6">
-            <a
-              href={site.telegram.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex w-full items-center justify-center rounded-full bg-action py-4 text-center text-sm font-semibold text-white shadow-md transition-all active:scale-[0.98]"
-            >
-              Entrar no bot no Telegram
-            </a>
-            <p className="text-center font-display text-xs italic text-muted">
-              {site.signature}
-            </p>
-          </div>
-        </div>
-      )}
     </header>
+
+    {/* Menu Mobile Drawer — FORA do <header> de propósito: o backdrop-blur do
+        header cria containing block pra position:fixed e quebraria o inset.
+        Top medido dinamicamente a partir da altura real do header. */}
+    {mobileMenuOpen && (
+      <div
+        className="fixed inset-x-0 bottom-0 z-50 flex flex-col bg-paper/98 px-6 py-8 backdrop-blur-2xl md:hidden"
+        style={{ top: `${drawerTop}px` }}
+      >
+        <nav className="flex flex-col gap-6 text-lg font-medium text-ink">
+          {site.nav.map((item) => {
+            const href = item.href as string;
+            const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`flex items-center justify-between border-b border-hairline pb-4 transition-colors ${
+                  isActive ? "font-semibold text-action" : "text-ink hover:text-action"
+                }`}
+              >
+                <span>{item.label}</span>
+                <span className="text-sm font-normal text-muted">→</span>
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="mt-auto space-y-4 pt-6">
+          <a
+            href={site.telegram.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center rounded-full bg-action py-4 text-center text-sm font-semibold text-white shadow-md transition-all active:scale-[0.98]"
+          >
+            Entrar no bot no Telegram
+          </a>
+          <p className="text-center font-display text-xs italic text-muted">
+            {site.signature}
+          </p>
+        </div>
+      </div>
+    )}
+    </>
   );
 }

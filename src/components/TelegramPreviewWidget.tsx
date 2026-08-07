@@ -13,13 +13,14 @@ export function TelegramPreviewWidget() {
 
   return (
     <div className="relative mx-auto max-w-xl overflow-hidden rounded-2xl border border-hairline bg-paper p-6 shadow-lift sm:p-8">
-      {/* Cabeçalho do post no Telegram */}
-      <div className="flex items-center justify-between border-b border-hairline pb-4">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-action/10 font-display text-sm font-bold text-action">
+      {/* Cabeçalho do post no Telegram — flex-wrap: no mobile o badge desce
+          pra segunda linha em vez de estourar/ser cortado pelo overflow-hidden */}
+      <div className="flex flex-wrap items-center justify-between gap-y-3 border-b border-hairline pb-4">
+        <div className="flex min-w-0 items-center gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-action/10 font-display text-sm font-bold text-action">
             EV
           </div>
-          <div>
+          <div className="min-w-0">
             <h4 className="text-sm font-bold text-ink">Ensinamentos da Vida</h4>
             <p className="text-xs text-muted">@Ensinamentos_da_vida_bot · Bot Oficial</p>
           </div>

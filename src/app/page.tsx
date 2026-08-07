@@ -313,7 +313,9 @@ function TelegramSection() {
     <section className="border-b border-hairline py-24 sm:py-32">
       <Container>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <Reveal>
+          {/* min-w-0: sem isso o track auto do grid cresce até o max-content
+              do widget e estoura o container no mobile */}
+          <Reveal className="min-w-0">
             <div>
               <Eyebrow>Nossa Newsletter Gratuita</Eyebrow>
               <h2 className="mt-6 font-display text-4xl font-medium tracking-tight text-ink sm:text-5xl">
@@ -340,13 +342,15 @@ function TelegramSection() {
 
               <div className="mt-10">
                 <Button href={site.telegram.url} external className="shadow-glow">
-                  Entrar no {site.telegram.handle}
+                  {/* Label curto no mobile: o handle completo não cabe sem estourar o grid */}
+                  <span className="sm:hidden">Entrar no bot</span>
+                  <span className="hidden sm:inline">Entrar no {site.telegram.handle}</span>
                 </Button>
               </div>
             </div>
           </Reveal>
 
-          <Reveal delay={120}>
+          <Reveal delay={120} className="min-w-0">
             <TelegramPreviewWidget />
           </Reveal>
         </div>
