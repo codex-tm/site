@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap Location for Google Search Console & Search Bots
+Sitemap: https://ensinamentosdavida.com.br/sitemap.xml

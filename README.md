@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ensinamentos da Vida — Site & Blog Oficial
 
-## Getting Started
+Site e Blog desenvolvidos em **HTML5, CSS3 e JavaScript Puro** (Zero dependências, zero frameworks pesados, ultra rápido e 100% otimizado para o Google Search Console).
 
-First, run the development server:
+## 📁 Estrutura do Projeto
+
+- `index.html` — Página Principal (Home, Manifesto, Prova de Valor, Destaques, Telegram, DarkCTA)
+- `blog.html` — Explorador de Artigos com Busca em Tempo Real e Filtro de Categorias
+- `metodo.html` — Os 3 Pilares do Método
+- `manifesto.html` — Manifesto Oficial da Marca
+- `sitemap.xml` — Sitemap XML para indexação no Google Search Console
+- `robots.txt` — Regras de rastreamento para buscadores
+- `rss.xml` — Feed RSS 2.0
+- `blog/` — Pasta com os artigos individuais
+  - `a-escolha-dura-segundos.html`
+  - `falsos-conselhos-e-cortina-de-fumaca.html`
+  - `mascaras-e-autenticidade.html`
+  - `nao-aceite-migalhas.html`
+  - `a-arte-do-comportamento-proibido.html`
+- `assets/`
+  - `css/` (`variables.css`, `base.css`, `layout.css`, `components.css`, `styles.css`)
+  - `js/` (`theme.js`, `search.js`, `reading-progress.js`, `main.js`)
+
+## 🚀 Como Executar Localmente
+
+Basta dar um duplo clique em `index.html` para abrir diretamente em qualquer navegador, ou rodar um servidor HTTP simples:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx serve .
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌐 Como Fazer Deploy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Como o projeto é em HTML/CSS estático puro:
+1. **Cloudflare Pages:** Crie um novo projeto, aponte a pasta `site` e publique instantaneamente (sem comando de build).
+2. **GitHub Pages / Netlify / Vercel:** Basta enviar a pasta `site` para o repositório.

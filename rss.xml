@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ensinamentos da Vida</title>
+    <link>https://ensinamentosdavida.com.br</link>
+    <description>Conteúdo profundo sobre postura, estoicismo, disciplina e mentalidade.</description>
+    <language>pt-BR</language>
+    <lastBuildDate>Sat, 08 Aug 2026 12:00:00 -0300</lastBuildDate>
+    <atom:link href="https://ensinamentosdavida.com.br/rss.xml" rel="self" type="application/rss+xml"/>
+
+    <item>
+      <title>Falsos Conselhos, Amigos de Fachada e a Arte da Cortina de Fumaça</title>
+      <link>https://ensinamentosdavida.com.br/blog/falsos-conselhos-e-cortina-de-fumaca.html</link>
+      <guid isPermaLink="true">https://ensinamentosdavida.com.br/blog/falsos-conselhos-e-cortina-de-fumaca.html</guid>
+      <pubDate>Thu, 06 Aug 2026 10:00:00 -0300</pubDate>
+      <description>Nem todo mundo que sorri para você torce pelo seu sucesso. Aprenda a aplicar a Lei da Cortina de Fumaça.</description>
+      <category>Mentalidade</category>
+    </item>
+
+    <item>
+      <title>A Escolha Dura Segundos: A Consequência Pode Durar a Vida Inteira</title>
+      <link>https://ensinamentosdavida.com.br/blog/a-escolha-dura-segundos.html</link>
+      <guid isPermaLink="true">https://ensinamentosdavida.com.br/blog/a-escolha-dura-segundos.html</guid>
+      <pubDate>Thu, 06 Aug 2026 09:00:00 -0300</pubDate>
+      <description>O seu cérebro foi projetado para te manter confortável. Cada escolha simples que você adia vira juros compostos cobrados no futuro.</description>
+      <category>Disciplina</category>
+    </item>
+
+    <item>
+      <title>Máscaras e Autenticidade: O Preço de Ser Quem Você É</title>
+      <link>https://ensinamentosdavida.com.br/blog/mascaras-e-autenticidade.html</link>
+      <guid isPermaLink="true">https://ensinamentosdavida.com.br/blog/mascaras-e-autenticidade.html</guid>
+      <pubDate>Fri, 31 Jul 2026 10:00:00 -0300</pubDate>
+      <description>Você foi treinado para agradar a todos e amortecer suas palavras. Descubra como rasgar a máscara da aprovação social.</description>
+      <category>Autenticidade</category>
+    </item>
+
+    <item>
+      <title>Não Aceite Migalhas: O Seu Valor Não É Negociável</title>
+      <link>https://ensinamentosdavida.com.br/blog/nao-aceite-migalhas.html</link>
+      <guid isPermaLink="true">https://ensinamentosdavida.com.br/blog/nao-aceite-migalhas.html</guid>
+      <pubDate>Fri, 31 Jul 2026 09:00:00 -0300</pubDate>
+      <description>Toda vez que você aceita menos do que merece por medo de ficar sozinho, você ensina o mundo a te desvalorizar.</description>
+      <category>Autoestima</category>
+    </item>
+
+  </channel>
+</rss>
