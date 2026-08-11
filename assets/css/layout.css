@@ -1,6 +1,7 @@
 /* ==========================================
    ENSINAMENTOS DA VIDA - LAYOUT STYLES
    Grid, Container, Header Masthead & Navigation
+   Swiss Modernism 2.0 Editorial
    ========================================== */
 
 /* Main Container */
@@ -61,15 +62,9 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(252, 252, 251, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background-color: var(--bg-paper);
   border-bottom: 1px solid var(--border-hairline);
   transition: background-color var(--transition-normal);
-}
-
-[data-theme="dark"] .site-header {
-  background-color: rgba(12, 10, 9, 0.88);
 }
 
 /* Top Masthead Utility Bar */
@@ -101,7 +96,6 @@
   height: 6px;
   background-color: #10B981;
   border-radius: 50%;
-  box-shadow: 0 0 8px #10B981;
 }
 
 /* Main Nav Header */
@@ -178,9 +172,8 @@
 }
 
 .theme-toggle-btn:hover {
-  border-color: var(--color-action-border);
+  border-color: var(--color-action);
   color: var(--color-action);
-  transform: scale(1.05);
 }
 
 .theme-toggle-btn .icon-sun {

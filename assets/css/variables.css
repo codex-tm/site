@@ -1,104 +1,84 @@
 /* ==========================================
-   ENSINAMENTOS DA VIDA - DESIGN TOKENS 2.0
-   Luxury Editorial & Modern Glassmorphism
+   ENSINAMENTOS DA VIDA - DESIGN TOKENS
+   Swiss Modernism 2.0 Editorial
+   Fonte de verdade: 02-SITE/Identidade Visual.md
    ========================================== */
 
 :root {
-  /* Color Palette - Light Mode (Luxury Editorial Paper) */
-  --bg-paper: #FAF9F6;
-  --bg-paper-dim: #F2F0E9;
+  /* Color Palette - Light Mode (Editorial Paper) */
+  --bg-paper: #FCFCFB;
+  --bg-paper-dim: #F4F3EF;
   --bg-paper-card: #FFFFFF;
-  --bg-glass: rgba(255, 255, 255, 0.75);
-  
-  --color-ink: #11100F;
-  --color-ink-soft: #242220;
-  --color-graphite: #4A4643;
-  --color-muted: #736E69;
-  --color-muted-light: #A39D96;
-  
-  /* Primary Brand Action Colors & Gradients */
-  --color-action: #2563EB;          /* Royal Electric Blue */
-  --color-action-hover: #1D4ED8;    /* Deep Blue */
-  --color-action-soft: rgba(37, 99, 235, 0.08);
-  --color-action-border: rgba(37, 99, 235, 0.25);
-  
-  --gradient-action: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-  --gradient-accent: linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%);
-  --gradient-text: linear-gradient(135deg, #11100F 30%, #2563EB 100%);
-  --gradient-gold: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
-  
+
+  --color-ink: #1C1917;
+  --color-ink-soft: #292524;
+  --color-graphite: #57534E;
+  --color-muted: #A8A29E;
+
+  /* Primary Brand Action Color - Sóbrio, editorial */
+  --color-action: #1E40AF;
+  --color-action-hover: #1E3A8A;
+  --color-action-soft: #EEF2FB;
+
   /* Hairline Borders & Dividers */
-  --border-hairline: rgba(17, 16, 15, 0.08);
-  --border-hairline-strong: rgba(17, 16, 15, 0.16);
-  --border-glow: rgba(37, 99, 235, 0.3);
-  
-  /* Dark Band (Dualidade Tinta / Luxury Dark) */
-  --bg-dark-band: #09090B;
-  --bg-dark-card: #141417;
-  --text-dark-band: #FAFAFA;
-  --text-dark-muted: #A1A1AA;
-  --action-bright: #60A5FA;
-  
+  --border-hairline: rgba(28, 25, 23, 0.08);
+  --border-hairline-strong: rgba(28, 25, 23, 0.16);
+
+  /* Dark Band (Dualidade Tinta) */
+  --bg-dark-band: #0C0A09;
+  --bg-dark-card: #1C1917;
+  --text-dark-band: #FAFAF9;
+  --text-dark-muted: #A8A29E;
+  --action-bright: #93C5FD;
+
   /* Typography Tokens */
   --font-display: 'Newsreader', Georgia, 'Times New Roman', serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  
+
   /* Layout Dimensions */
   --container-max-width: 1140px;
   --container-narrow-width: 780px;
   --header-height: 76px;
   --masthead-height: 38px;
-  
-  /* Border Radii */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
+
+  /* Border Radii - contido, editorial */
+  --radius-sm: 6px;
+  --radius-md: 12px;
   --radius-full: 9999px;
-  
-  /* Layered Shadows */
-  --shadow-subtle: 0 4px 20px -2px rgba(0, 0, 0, 0.03), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
-  --shadow-lift: 0 20px 40px -12px rgba(0, 0, 0, 0.08), 0 8px 16px -6px rgba(37, 99, 235, 0.08);
-  --shadow-glow: 0 0 35px rgba(37, 99, 235, 0.25);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.05), 0 10px 25px -5px rgba(0, 0, 0, 0.03);
-  
+
+  /* Shadows - quase zero, sem cor */
+  --shadow-editorial: 0 8px 30px rgba(0, 0, 0, 0.04);
+  --shadow-lift: 0 12px 24px rgba(0, 0, 0, 0.06);
+
   /* Transitions */
   --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-slow: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Dark Mode Overrides */
 [data-theme="dark"] {
-  --bg-paper: #09090B;
-  --bg-paper-dim: #121215;
-  --bg-paper-card: #18181B;
-  --bg-glass: rgba(24, 24, 27, 0.75);
-  
-  --color-ink: #FAFAFA;
-  --color-ink-soft: #F4F4F5;
-  --color-graphite: #D4D4D8;
-  --color-muted: #A1A1AA;
-  --color-muted-light: #71717A;
-  
-  --color-action: #3B82F6;
-  --color-action-hover: #60A5FA;
-  --color-action-soft: rgba(59, 130, 246, 0.15);
-  --color-action-border: rgba(59, 130, 246, 0.35);
-  
-  --gradient-text: linear-gradient(135deg, #FFFFFF 40%, #60A5FA 100%);
-  
-  --border-hairline: rgba(255, 255, 255, 0.08);
-  --border-hairline-strong: rgba(255, 255, 255, 0.18);
-  --border-glow: rgba(96, 165, 250, 0.4);
-  
+  --bg-paper: #0C0A09;
+  --bg-paper-dim: #1C1917;
+  --bg-paper-card: #292524;
+
+  --color-ink: #FAFAF9;
+  --color-ink-soft: #F5F5F4;
+  --color-graphite: #D6D3D1;
+  --color-muted: #A8A29E;
+
+  --color-action: #93C5FD;
+  --color-action-hover: #BFDBFE;
+  --color-action-soft: rgba(147, 197, 253, 0.12);
+
+  --border-hairline: rgba(250, 250, 249, 0.08);
+  --border-hairline-strong: rgba(250, 250, 249, 0.16);
+
   --bg-dark-band: #040405;
   --bg-dark-card: #0F0F12;
   --text-dark-band: #FFFFFF;
   --text-dark-muted: #D4D4D8;
   --action-bright: #93C5FD;
-  
-  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.5);
-  --shadow-lift: 0 20px 40px -10px rgba(0, 0, 0, 0.7), 0 0 30px rgba(59, 130, 246, 0.15);
-  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.4), 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+
+  --shadow-editorial: 0 8px 30px rgba(0, 0, 0, 0.3);
+  --shadow-lift: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
