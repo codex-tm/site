@@ -94,7 +94,7 @@
 .masthead-badge .pulse-dot {
   width: 6px;
   height: 6px;
-  background-color: #10B981;
+  background-color: var(--color-action);
   border-radius: 50%;
 }
 
@@ -119,6 +119,11 @@
 
 .brand-logo span.dot {
   color: var(--color-action);
+}
+
+.brand-logo .brand-symbol {
+  color: var(--color-ink);
+  flex-shrink: 0;
 }
 
 .nav-links {

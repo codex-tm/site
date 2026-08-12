@@ -50,13 +50,13 @@
 }
 
 .badge-gold {
-  background: rgba(245, 158, 11, 0.12);
-  color: #D97706;
-  border-color: rgba(245, 158, 11, 0.3);
+  background: var(--color-action-soft);
+  color: var(--color-action);
+  border-color: transparent;
 }
 
 [data-theme="dark"] .badge-gold {
-  color: #FBBF24;
+  color: var(--color-action);
 }
 
 /* Buttons - sem gradientes, sem sombras coloridas */
@@ -104,13 +104,13 @@
 }
 
 .btn-telegram {
-  background-color: #229ED9;
+  background-color: var(--color-action);
   color: #FFFFFF;
-  border: 1px solid #229ED9;
+  border: 1px solid var(--color-action);
 }
 
 .btn-telegram:hover {
-  background-color: #1681B5;
+  background-color: var(--color-action-hover);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lift);
   color: #FFFFFF;
