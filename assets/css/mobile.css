@@ -300,10 +300,32 @@ html, body {
   }
 }
 
-@media (max-width: 380px) {
+/* Em telas pequenas, esconde o botão "Bot Telegram" do header
+   (redundante: já tem CTA no hero, telegram-box e dark-cta-band) */
+@media (max-width: 480px) {
   .nav-actions .btn {
-    padding: 0.5rem 0.7rem !important;
-    font-size: 0.8rem !important;
+    display: none !important;
+  }
+
+  .brand-logo {
+    font-size: 1.25rem;
+    gap: 0.5rem;
+  }
+
+  .brand-logo .brand-symbol {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand-logo {
+    font-size: 1.1rem;
+  }
+
+  .brand-logo .brand-symbol {
+    width: 28px;
+    height: 28px;
   }
 }
 
