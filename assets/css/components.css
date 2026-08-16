@@ -403,8 +403,11 @@
   }
 }
 
-/* Scroll Reveal Base */
-.reveal {
+/* Scroll Reveal Base — progressive enhancement:
+   Content is VISIBLE by default. Only hidden when JS confirms
+   it can handle the reveal animation (html.js-reveal class). */
+
+html.js-reveal .reveal:not(.is-visible) {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);

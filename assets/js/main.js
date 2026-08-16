@@ -4,6 +4,10 @@
    ========================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Enable reveal animations only when JS is confirmed active
+  // (progressive enhancement: content visible without JS)
+  document.documentElement.classList.add('js-reveal');
+
   // Mobile Navigation Toggle
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navLinks = document.querySelector('.nav-links');
