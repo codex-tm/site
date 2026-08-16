@@ -56,9 +56,11 @@ npx serve .
 
 ## Como Fazer Deploy
 
-Projeto 100% estático:
+O deploy é automático via **Cloudflare Pages** conectado ao repositório
+(github.com/codex-tm/site): todo push na branch `main` publica o site em
+ensinamentosdavida.com.br (sem build — HTML puro).
 
-1. **Cloudflare Pages:** aponte a pasta e publique (sem comando de build).
-2. **GitHub Pages / Netlify / Vercel:** envie a pasta para o repositório.
+O workflow `.github/workflows/validate.yml` roda apenas validações estáticas
+(sitemap, SEO dos artigos, links do blog.html) — ele NÃO faz o deploy.
 
-Após o deploy, submeta o `sitemap.xml` no Google Search Console.
+Após o deploy, confira o `sitemap.xml` no Google Search Console.
