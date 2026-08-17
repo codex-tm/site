@@ -83,7 +83,7 @@ Itens que faltam para conformidade total com as diretrizes de `01-diretrizes-do-
 | P2-3 artigos finos | ✅ concluído (a-arte 533→1050, nao-aceite 629→1037 palavras) | 17/08/2026 |
 | P2-4 headers | ✅ concluído via arquivo `_headers` (Cloudflare Pages) | 17/08/2026 |
 | EXTRA links quebrados nav (metodo.html/manifesto.html) | ✅ removidos dos 3 artigos | 17/08/2026 |
-| P3-1 política IA | pendente (decisão; hoje o Cloudflare bloqueia bots de IA e libera Googlebot) | — |
+| P3-1 política IA | ✅ DECIDIDO pelo dono (17/08/2026): MANTER bloqueio de bots de IA do Cloudflare. Sem vantagem em aparecer em respostas de IA; Googlebot segue liberado. Não mudar sem decisão explícita. | 17/08/2026 |
 | P3-2 rotina GSC | pendente (requer login do dono) | — |
 | P3-3 PageSpeed | pendente (rodar após cada mudança grande) | — |
 
