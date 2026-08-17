@@ -2,6 +2,10 @@
 
 Site e Blog em **HTML5, CSS3 e JavaScript Puro** (zero dependências, zero frameworks, ultra rápido e 100% otimizado para o Google Search Console).
 
+## Documentação SEO
+
+**Antes de mexer no site, leia [`docs/seo/`](docs/seo/README.md)** — diretrizes do Google, diagnóstico do site, checklist obrigatório para novas páginas e plano de melhorias. Qualquer página/artigo novo segue o checklist em `docs/seo/03-checklist-novas-paginas.md`.
+
 ## Estrutura do Projeto
 
 - `index.html` — Página Principal (Home, Manifesto, Prova de Valor, Destaques, Telegram, DarkCTA)
