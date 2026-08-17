@@ -75,7 +75,7 @@ Itens que faltam para conformidade total com as diretrizes de `01-diretrizes-do-
 |---|---|---|
 | P0-1 @id Organization | ✅ concluído | 17/08/2026 |
 | P0-2 descriptions | ✅ concluído | 17/08/2026 |
-| P1-1 404 page | ✅ concluído | 17/08/2026 |
+| P1-1 404 page | ✅ publicada (Pages não serve automaticamente ainda — investigar no painel, ver diagnóstico §5) | 17/08/2026 |
 | P1-2 relacionados | ✅ já existia nos 5 (títulos padronizados p/ "Artigos Relacionados") | 17/08/2026 |
 | P1-3 mockup.jpg | ✅ removido via git rm | 17/08/2026 |
 | P2-1 autor-persona | pendente (aguarda decisão do dono: nome/bio) | — |
