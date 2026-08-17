@@ -48,7 +48,23 @@ Mais o JSON-LD (colar do artigo mais recente e atualizar os campos):
 </script>
 ```
 
-> Se o P2-6 do plano de melhorias já tiver sido feito, usar `Person` no author com o nome do autor-persona.
+> Se o P2-1 já tiver sido feito (foi, 17/08/2026), o author é a Pessoa Fernando:
+
+```json
+"author": {
+  "@type": "Person",
+  "name": "Fernando",
+  "url": "https://ensinamentosdavida.com.br/sobre.html"
+},
+```
+
+E o header do artigo leva byline visível logo depois do badge de categoria:
+
+```html
+<span style="font-size: 0.85rem; color: var(--color-muted);">• Por <a href="../sobre.html" style="color: var(--color-ink); font-weight: 600; text-decoration: none;">Fernando</a></span>
+```
+
+Também: `<meta name="author" content="Fernando">`. Não voltar para author=Organization sem decisão do dono.
 > Se o artigo for atualização de conteúdo existente, adicionar `"dateModified": "AAAA-MM-DD"`.
 
 Corpo: exatamente 1 `<h1>` (o título), seções em h2/h3, links internos descritivos e — quando a seção de relacionados existir — link para 2–3 artigos afins.
