@@ -106,3 +106,14 @@ server: cloudflare | cf-cache-status: HIT
 
 - Painel GSC: cobertura real de indexação, consultas, CTR, Core Web Vitals de campo. Requer conta Google do dono — agente não tem acesso. Ver rotina em `01-diretrizes-do-google.md` §7.
 - Rich Results Test / PageSpeed Insights públicos: podem ser rodados sem login quando quiser (ferramentas web abertas).
+
+---
+
+## Atualização — 17/08/2026 (segunda passada, execução do plano)
+
+Correções e achados desta rodada:
+
+1. **Correção do diagnóstico anterior:** a seção de artigos relacionados JÁ existia nos 5 artigos (com títulos variados: "Outros Artigos", "Outros Artigos do Blog", "Artigos Relacionados") — o grep da primeira auditoria não capturou todas as variantes. Os títulos foram padronizados para "Artigos Relacionados".
+2. **Bug novo encontrado e corrigido:** 3 artigos tinham links no header para `metodo.html` e `manifesto.html`, páginas que NÃO EXISTEM (links quebrados = sinal ruim pro Google e péssimo pro leitor). Links removidos.
+3. **Executado:** @id da Organization corrigido na home; descriptions de `a-escolha` (177→158ch) e `a-arte` (161→139ch) ajustadas; `404.html` customizada criada; `mockup.jpg` removido do git; `dateModified` adicionado aos 5 artigos; artigos finos expandidos dentro da voz do blog (`a-arte` 533→1050 palavras, `nao-aceite-migalhas` 629→1037); tempos de leitura recalculados e sincronizados entre artigos e cards do blog.html; headers de segurança via `_headers` (HSTS, nosniff, referrer-policy, permissions-policy); `lastmod` do sitemap atualizado.
+4. **Pendências restantes:** P2-1 (autor-persona — decisão do dono), P3-1 (política de bots de IA — decisão), P3-2/P3-3 (rotinas que requerem login/ferramentas externas).

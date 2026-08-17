@@ -4,14 +4,14 @@
   <!-- Main Pages -->
   <url>
     <loc>https://ensinamentosdavida.com.br/</loc>
-    <lastmod>2026-08-08</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
     <loc>https://ensinamentosdavida.com.br/blog.html</loc>
-    <lastmod>2026-08-08</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
   </url>
@@ -19,35 +19,35 @@
   <!-- Blog Articles -->
   <url>
     <loc>https://ensinamentosdavida.com.br/blog/a-escolha-dura-segundos.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://ensinamentosdavida.com.br/blog/falsos-conselhos-e-cortina-de-fumaca.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://ensinamentosdavida.com.br/blog/a-arte-do-comportamento-proibido.html</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://ensinamentosdavida.com.br/blog/mascaras-e-autenticidade.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
     <loc>https://ensinamentosdavida.com.br/blog/nao-aceite-migalhas.html</loc>
-    <lastmod>2026-07-31</lastmod>
+    <lastmod>2026-08-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>

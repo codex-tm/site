@@ -93,6 +93,11 @@ Mesmo Passo 1 (sem `article:published_time`, JSON-LD tipo `WebPage`), e:
 - Entrar no `sitemap.xml` (não entra no RSS).
 - Receber link de navegação visível (header, home ou footer) — página sem link interno é órfã.
 - Se for página utilitária sem valor de busca (ex.: política interna), considerar `<meta name="robots" content="noindex">` em vez de esconder do sitemap.
+- Nunca linkar para página que não existe (o site já teve links mortos no nav para `metodo.html`/`manifesto.html` — foram removidos em 17/08/2026; se essas páginas forem criadas um dia, aí sim os links voltam).
+
+## Nota sobre a página 404
+
+Existe `404.html` na raiz (criada 17/08/2026). O Cloudflare Pages a serve automaticamente para qualquer URL inexistente. Se mudar a identidade do site (header/footer), atualizar a 404 junto.
 
 ---
 

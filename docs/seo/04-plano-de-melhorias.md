@@ -73,15 +73,18 @@ Itens que faltam para conformidade total com as diretrizes de `01-diretrizes-do-
 
 | Item | Status | Data |
 |---|---|---|
-| P0-1 @id Organization | pendente | — |
-| P0-2 descriptions | pendente | — |
-| P1-1 404 page | pendente | — |
-| P1-2 relacionados | pendente | — |
-| P1-3 mockup.jpg | pendente | — |
-| P2-1 autor-persona | pendente (aguarda decisão) | — |
-| P2-2 dateModified | pendente | — |
-| P2-3 artigos finos | pendente | — |
-| P2-4 headers | pendente | — |
-| P3-1 política IA | pendente (aguarda decisão) | — |
+| P0-1 @id Organization | ✅ concluído | 17/08/2026 |
+| P0-2 descriptions | ✅ concluído | 17/08/2026 |
+| P1-1 404 page | ✅ concluído | 17/08/2026 |
+| P1-2 relacionados | ✅ já existia nos 5 (títulos padronizados p/ "Artigos Relacionados") | 17/08/2026 |
+| P1-3 mockup.jpg | ✅ removido via git rm | 17/08/2026 |
+| P2-1 autor-persona | pendente (aguarda decisão do dono: nome/bio) | — |
+| P2-2 dateModified | ✅ concluído (nos 5 artigos) | 17/08/2026 |
+| P2-3 artigos finos | ✅ concluído (a-arte 533→1050, nao-aceite 629→1037 palavras) | 17/08/2026 |
+| P2-4 headers | ✅ concluído via arquivo `_headers` (Cloudflare Pages) | 17/08/2026 |
+| EXTRA links quebrados nav (metodo.html/manifesto.html) | ✅ removidos dos 3 artigos | 17/08/2026 |
+| P3-1 política IA | pendente (decisão; hoje o Cloudflare bloqueia bots de IA e libera Googlebot) | — |
+| P3-2 rotina GSC | pendente (requer login do dono) | — |
+| P3-3 PageSpeed | pendente (rodar após cada mudança grande) | — |
 
 > Ao concluir um item: marcar aqui, atualizar o diagnóstico (02) e rodar a verificação (05).
