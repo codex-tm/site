@@ -22,7 +22,8 @@ if not urls:
     errors.append("sitemap.xml sem URLs")
 for u in urls:
     rel = u.split(DOMINIO, 1)[1]
-    if not (ROOT / rel).exists():
+    # Clean URLs: o sitemap pode ter /blog/memento-mori (sem .html)
+    if not (ROOT / rel).exists() and not (ROOT / (rel + '.html')).exists():
         errors.append("sitemap aponta para arquivo inexistente: " + rel)
 
 blog_dir = ROOT / "blog"
@@ -40,17 +41,23 @@ for f in artigos:
     ]:
         if needle not in t:
             errors.append("blog/" + f.name + ": falta " + label)
-    # 5. relacionados existentes
-    for href in set(re.findall(r'href="([a-z0-9-]+\.html)"', t)):
-        if not (blog_dir / href).exists():
-            errors.append("blog/" + f.name + ": relacionado inexistente: " + href)
-    # 4. artigo tem card no blog.html?
-    if "blog/" + f.name not in blog_index:
+    # 5. relacionados existentes (aceita com e sem .html — clean URLs)
+    for href in set(re.findall(r'href="([a-z0-9-]+\.html)"', t)) | set(re.findall(r'href="([a-z0-9-]+)"', t)):
+        if href.endswith('.html'):
+            if not (blog_dir / href).exists():
+                errors.append("blog/" + f.name + ": relacionado inexistente: " + href)
+        else:
+            if not (blog_dir / (href + '.html')).exists():
+                errors.append("blog/" + f.name + ": relacionado inexistente: " + href)
+    # 4. artigo tem card no blog.html? (aceita clean URL ou com .html)
+    card_ok = ("blog/" + f.name in blog_index) or ("blog/" + f.name.replace('.html', '') in blog_index)
+    if not card_ok:
         errors.append("artigo sem card no blog.html: blog/" + f.name)
 
-# 3. cards do blog.html -> artigos existentes
-for href in set(re.findall(r'href="(blog/[a-z0-9-]+\.html)"', blog_index)):
-    if not (ROOT / href).exists():
+# 3. cards do blog.html -> artigos existentes (aceita com e sem .html)
+for href in set(re.findall(r'href="(blog/[a-z0-9-]+\.html)"', blog_index)) | set(re.findall(r'href="(blog/[a-z0-9-]+)"', blog_index)):
+    target = ROOT / href if href.endswith('.html') else ROOT / (href + '.html')
+    if not target.exists():
         errors.append("blog.html aponta para artigo inexistente: " + href)
 
 if errors:
